@@ -1,0 +1,20 @@
+{
+  "name": "cross-game-crafting-hub",
+  "version": "1.0.0",
+  "description": "Cross-game NFT crafting system",
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy": "hardhat deploy-zksync --script deploy.js"
+  },
+  "devDependencies": {
+    "@matterlabs/hardhat-zksync-deploy": "^1.5.0",
+    "@matterlabs/hardhat-zksync-solc": "^1.2.4",
+    "hardhat": "^2.19.0",
+    "zksync-ethers": "^6.12.1",
+    "ethers": "^6.12.2",
+    "dotenv": "^16.0.3"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0"
+  }
+}
