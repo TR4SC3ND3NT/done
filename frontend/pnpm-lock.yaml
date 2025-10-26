@@ -12,7 +12,7 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       ethers:
-        specifier: ^5.8.0
+        specifier: '5'
         version: 5.8.0
       react:
         specifier: ^19.1.1

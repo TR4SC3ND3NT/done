@@ -1,38 +1,55 @@
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
+// src/App.tsx
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import useWallet from './hooks/useWallet';
-import Home from './screens/Home';
-import Inventory from './screens/Inventory';
-import Recipes from './screens/Recipes';
-import Craft from './screens/Craft';
-import './App.css';
+import Home from './pages/Home';
+import Inventory from './pages/Inventory';
+import Craft from './pages/Craft';
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
-  const { address } = useWallet();
-  const { pathname } = useLocation();
+  const { address, connect, isConnecting } = useWallet();
 
   return (
-    <div className="app">
-      <Toaster position="top-center"/>
-      <header className="header">
-        <Link to="/" className="logo">▲ Cross-Game</Link>
-        <nav className="tabs">
-          <Link to="/"          className={pathname==='/'          ?'active':''}>Home</Link>
-          {address && <>
-            <Link to="/inventory" className={pathname.startsWith('/inventory')?'active':''}>Inventory</Link>
-            <Link to="/recipes"   className={pathname.startsWith('/recipes')  ?'active':''}>Recipes</Link>
-            <Link to="/craft"     className={pathname.startsWith('/craft')    ?'active':''}>Craft</Link>
-          </>}
-        </nav>
-        {address && <span className="wallet">{address.slice(0,6)}…{address.slice(-4)}</span>}
-      </header>
+    <>
+      <BrowserRouter>
+        <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-black text-white">
+          <header className="p-4 backdrop-blur-md bg-white/5 border-b border-cyan-500/20">
+            <div className="max-w-6xl mx-auto flex justify-between items-center">
+              <Link to="/" className="flex items-center gap-2">
+                <span className="text-2xl">Cross-Game Crafting Hub</span>
+              </Link>
+              <div className="flex items-center gap-4">
+                {address ? (
+                  <>
+                    <span className="text-green-400 text-sm">Wallet connected!</span>
+                    <nav className="flex gap-4">
+                      <Link to="/inventory" className="hover:text-cyan-400">Inventory</Link>
+                      <Link to="/craft" className="hover:text-cyan-400">Craft</Link>
+                    </nav>
+                  </>
+                ) : (
+                  <button
+                    onClick={connect}
+                    disabled={isConnecting}
+                    className="btn-primary"
+                  >
+                    {isConnecting ? 'Connecting...' : 'Connect Wallet'}
+                  </button>
+                )}
+              </div>
+            </div>
+          </header>
 
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/inventory" element={<Inventory/>}/>
-        <Route path="/recipes" element={<Recipes/>}/>
-        <Route path="/craft" element={<Craft/>}/>
-      </Routes>
-    </div>
+          <main className="p-6">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/inventory" element={<Inventory />} />
+              <Route path="/craft" element={<Craft />} />
+            </Routes>
+          </main>
+        </div>
+      </BrowserRouter>
+      <Toaster position="bottom-right" />
+    </>
   );
 }
