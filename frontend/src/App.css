@@ -550,3 +550,17 @@ body {
 .btn-craft:disabled {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+.tabs a{margin:0 8px;color:#888;transition:.2s}
+.tabs a.active{color:#39ff14}
+.tabs a:hover{color:#c124ff}
+.logo{font-weight:700;font-size:18px;color:#39ff14;text-decoration:none}
+.landing{text-align:center;padding:10vh 20px;position:relative}
+.big-gradient{font-size:clamp(32px,6vw,72px);background:linear-gradient(90deg,#c124ff,#39ff14);-webkit-background-clip:text;color:transparent;margin-bottom:20px;font-weight:900}
+.subtitle{color:#aaa;margin-bottom:40px}
+.btn-primary.big{font-size:20px;padding:16px 48px}
+.connected{color:#39ff14;margin:20px 0}
+.scanlines{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(rgba(255,255,255,.03) 50%,transparent 50%);background-size:100% 4px;pointer-events:none;mix-blend-mode:overlay}
+.grid.small{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
+.card-mini{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);padding:20px;text-align:center;border-radius:12px;cursor:pointer;transition:.3s;user-select:none}
+.card-mini.selected{border-color:#39ff14;transform:scale(1.05)}
