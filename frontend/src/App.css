@@ -16,12 +16,16 @@ body {
   min-height: 100vh;
   padding: 20px;
   overflow-x: hidden;
+  color: #e6eef8; /* <-- явный читаемый цвет по умолчанию */
 }
 
 .app {
   max-width: 1400px;
   margin: 0 auto;
   animation: fadeIn 0.6s ease-out;
+  min-height: calc(100vh - 40px); /* <-- чтобы контейнер занимал видимую область */
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes fadeIn {
@@ -44,6 +48,7 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
+  z-index: 3; /* <-- гарантируем, что header сверху */
 }
 
 .header::before {
@@ -399,14 +404,14 @@ body {
   background-size: 100% 4px;
   pointer-events: none;
   mix-blend-mode: overlay;
-  z-index: -1;
+  z-index: 0; /* <-- не скрывать основной контент */
 }
 
 .fade-in {
-  animation: fadeIn 0.5s ease-in;
+  animation: fadeInFast 0.5s ease-in; /* <-- уникальное имя */
 }
 
-@keyframes fadeIn {
+@keyframes fadeInFast {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
